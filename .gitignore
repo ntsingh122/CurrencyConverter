@@ -1,0 +1,33 @@
+# Local properties
+local.properties
+
+# Gradle build outputs
+build/
+.gradle/
+app/build/
+
+# Android Studio IDE files
+.idea/
+*.iml
+.DS_Store
+
+# Keystore files
+*.jks
+*.keystore
+
+# APK and bundle outputs
+*.apk
+*.aab
+
+# Profiling and benchmark outputs
+*.hprof
+captures/
+
+# Navigation args generated files
+app/src/main/java/**/SafeArgs/
+
+# KSP generated files
+app/build/generated/
+
+# Test results
+test-results/
