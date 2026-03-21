@@ -12,10 +12,15 @@ import javax.inject.Inject
 class CurrencyRepositoryImpl @Inject constructor(
     private val apiService: CurrencyApiService
 ) : CurrencyRepository {
-    override suspend fun fetchAllCurrencyValues(baseCurrency: String): UiState<List<Currency>> {
+    override suspend fun fetchAllCurrencyValues(
+        baseCurrency: String,
+        currencies: List<String>?
+    ): UiState<List<Currency>> {
         return try {
+            val currenciesString =
+                currencies?.takeIf { it.isNotEmpty() }?.joinToString(separator = ",")
             val currencyList = CurrencyMapper.mapCurrencyDtoToCurrencyList(
-                apiService.getAllCurrencyValues(baseCurrency)
+                apiService.getAllCurrencyValues(baseCurrency, currenciesString)
             )
             UiState.Success(currencyList)
         } catch (e: HttpException) {
