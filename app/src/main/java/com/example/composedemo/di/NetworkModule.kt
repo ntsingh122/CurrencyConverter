@@ -25,15 +25,17 @@ object NetworkModule {
         return GsonBuilder().setStrictness(Strictness.LENIENT).create()
     }
 
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val url = chain.request().url.newBuilder()
-                    .addQueryParameter("apikey", BuildConfig.CURRENCY_API_KEY).build()
-                chain.proceed(chain.request().newBuilder().url(url).build())
+                    .addQueryParameter("apikey", BuildConfig.CURRENCY_API_KEY)
+                    .build()
+                chain.proceed(
+                    chain.request().newBuilder().url(url).build()
+                )
             }
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
@@ -42,7 +44,8 @@ object NetworkModule {
                     else
                         HttpLoggingInterceptor.Level.NONE
                 }
-            ).build()
+            )
+            .build()
     }
 
     @Provides

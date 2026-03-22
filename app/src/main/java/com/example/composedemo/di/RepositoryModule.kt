@@ -14,6 +14,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindCurrencyRepository(
-        impl: CurrencyRepositoryImpl
+        impl: CurrencyRepositoryImpl,
     ): CurrencyRepository
 }
